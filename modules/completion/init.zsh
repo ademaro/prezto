@@ -26,7 +26,8 @@ case `uname` in
     fi
     ;;
   Linux)
-    if [ $(date +'%j') != $(stat -c '%Sm' -t '%j' ~/.zcompdump) ]; then
+    zmodload zsh/datetime
+    if [ $(date +'%j') != $(strftime '%j' `stat -c '%Y' ~/.zcompdump`) ]; then
       compinit
     else
       compinit -C
